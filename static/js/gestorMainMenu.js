@@ -1,359 +1,166 @@
-// Ocultar menús de agregar, quitar y editar evento al cargar la página.
-document.addEventListener("DOMContentLoaded", function () {
-    var divAgregarEvento = document.getElementById("seeEventsWindow");
-    divAgregarEvento.style.display = "none";
-});
+// ============ Mostrar / Ocultar modales (igual que antes) ============
 
-function createRemindGUI(remindTitle, remindDetailsDay,remindDetailsBegin, remindDetailsBeginMin, remindersList, j, type)
-{
-
-    const name = remindersList[j][0];
-    const year = remindersList[j][1];
-    const month = remindersList[j][2];
-    const day = remindersList[j][3];
-    const hour = remindersList[j][4];
-    const minutes = remindersList[j][5];
-    let dayString = "";
-
-    if (type == "today") {
-        dayString = "HOY";
-    } else if (type == "tomorrow") {
-        dayString = "MAÑANA";
-    } else if (type == "other") {
-        dayString = "EL " + day + "/" + month + "/" + year;
-    }
-    let extraMinutes = "";
-    if (minutes < 10) {
-        extraMinutes = "0";
-    }
-
-    remindTitle.textContent = name;
-    remindDetailsDay.textContent = dayString + " a las ";
-    remindDetailsBegin.textContent = hour;
-    remindDetailsBeginMin.textContent = ":" + extraMinutes + minutes;
+function mostrarVentana(elementId) {
+   document.getElementById(elementId).style.display = "flex";
 }
 
 function ocultarVentana(elementId) {
-  var ventanaEmergente = document.getElementById(elementId);
-  ventanaEmergente.style.display = "none";
+   document.getElementById(elementId).style.display = "none";
 }
 
-function mostrarVentana(elementId) 
-{ 
-    var ventanaEmergente = document.getElementById(elementId);
-    ventanaEmergente.style.display = "flex";
+// ============ Helpers de formato ============
+
+function pad(numero) {
+   return String(numero).padStart(2, "0");
 }
 
-function cargarEventosSee(containerParent, containerChildren, nombreRecordatorio, year, month, day, hour, minute)
-{
-    
-    var displayDiv = document.createElement("div");
-    displayDiv.className = "alertBoxEventDiv";
-    displayDiv.id = "alertFullContent";
-
-    var seeEventsContent = document.getElementById(containerChildren);
-    seeEventsContent.appendChild(displayDiv);
-
-    var j = 0;
-
-    while (j < nombreRecordatorio.length)
-    {
-
-        var extraMinutes = "";
-        if (minute[j] < 10)
-        {
-
-            extraMinutes = "0";
-
-        }
-
-        var dataDiv = document.createElement("div");
-        dataDiv.className = "alertBoxContentDiv";
-
-        var individualEventDiv = document.createElement("div");
-        individualEventDiv.className = "individualEventDiv";
-        
-        var eventTitle = document.createElement("h3");
-        eventTitle.id = j + "evento";
-
-        var eventDetails = document.createElement("span");
-        eventDetails.className = "alertBoxContentDetails";
-        eventDetails.id = j + "details";
-
-        eventTitle.textContent = nombreRecordatorio[j];
-        eventDetails.textContent = "PROGRAMADO PARA EL " + day[j] + "/" + month[j] + "/" + year[j] + " A LAS " + hour[j] + ":" + extraMinutes + minute[j];
-
-        individualEventDiv.appendChild(eventTitle);
-        individualEventDiv.appendChild(eventDetails);
-        dataDiv.appendChild(individualEventDiv)
-        
-        
-        displayDiv.appendChild(dataDiv);
-        j++;
-
-
-    }
-
-    var acceptButton = document.createElement("button");
-    acceptButton.className = "acceptButton";
-    acceptButton.type = "button";
-    acceptButton.textContent = "VOLVER"
-         
-    var seeAlertsWindowDiv = document.getElementById(containerChildren);
-    seeAlertsWindowDiv.appendChild(acceptButton);
-         
-    acceptButton.addEventListener("click", function () {
-         
-        var ventanaEmergente = document.getElementById(containerParent);
-        ventanaEmergente.style.display = "none";
-         
-         
-         
-        });
-
+function etiquetaDia(dia, mes, anio, tipo) {
+   if (tipo === "today") return "HOY";
+   if (tipo === "tomorrow") return "MAÑANA";
+   return `EL ${dia}/${mes}/${anio}`;
 }
 
+// ============ Tarjetas de #EVENTS (resumen semanal) ============
 
-function cargarEventosDelete(containerParent, containerChildren, nombreRecordatorio, year, month, day, hour, minute)
-{
-    
-    var displayDiv = document.createElement("div");
-    displayDiv.className = "alertBoxEventDiv";
-    displayDiv.id = "alertFullContent";
+function crearTarjetaRecordatorio(recordatorio, tipo) {
+   // recordatorio = [nombre, year, month, day, hour, minute]
+   const [nombre, anio, mes, dia, hora, minuto] = recordatorio;
 
-    var seeEventsContent = document.getElementById(containerChildren);
-    seeEventsContent.appendChild(displayDiv);
+   const card = document.createElement("div");
+   card.className = "EVENTCARD";
 
-    var j = 0;
+   const titulo = document.createElement("h6");
+   titulo.className = "EVENTCARDTITLE";
+   titulo.textContent = nombre;
 
-    while (j < nombreRecordatorio.length)
-    {
+   const detalle = document.createElement("span");
+   detalle.className = "EVENTCARDDETAIL";
+   detalle.textContent = `${etiquetaDia(dia, mes, anio, tipo)} a las ${hora}:${pad(minuto)}`;
 
-        var extraMinutes = "";
-        if (minute[j] < 10)
-        {
-
-            extraMinutes = "0";
-
-        }
-
-        var dataDiv = document.createElement("div");
-        dataDiv.className = "alertBoxContentDiv";
-
-        var individualEventDiv = document.createElement("div");
-        individualEventDiv.className = "individualEventDiv";
-        
-        var eventTitle = document.createElement("h3");
-        eventTitle.id = j + "remind";
-
-        var eventDetails = document.createElement("span");
-        eventDetails.className = "alertBoxContentDetails";
-        eventDetails.id = j + "detailsRemind";
-
-        eventTitle.textContent = nombreRecordatorio[j];
-        eventDetails.textContent = "PROGRAMADO PARA EL " + day[j] + "/" + month[j] + "/" + year[j] + " A LAS " + hour[j] + ":" + extraMinutes + minute[j];
-
-        individualEventDiv.appendChild(eventTitle);
-        individualEventDiv.appendChild(eventDetails);
-        dataDiv.appendChild(individualEventDiv)
-        
-        //  Add remove buttons
-        var removeButton = document.createElement("button");
-        removeButton.className = "removeButton";
-        removeButton.id = j;
-        removeButton.type = "button";
-        removeButton.textContent = "ELIMINAR"
-        dataDiv.appendChild(removeButton);
-
-        removeButton.addEventListener("click", function () {
-            console.log(document.getElementById(this.id + "remind").textContent);
-            console.log(document.getElementById(this.id + "detailsRemind").textContent);
-
-            var remindSTR = document.getElementById(this.id + "remind").textContent;
-            var detailSTR = document.getElementById(this.id + "detailsRemind").textContent;
-
-            var splitDetails = detailSTR.split(" ");
-
-            let dateSTR = splitDetails[3];
-            let timeSTR = splitDetails[6];
-
-            let splitDate = dateSTR.split("/");
-            let splitTime = timeSTR.split(":");
-
-            let yearSTR = splitDate[2];
-            let monthSTR = splitDate[1];
-            let daySTR = splitDate[0];
-
-            let hourSTR = splitTime[0];
-            let minuteSTR = splitTime[1];
-
-            if (minuteSTR === "00") {
-                minuteSTR = "0";
-            }
-
-            console.log("yearSTR: " + yearSTR);
-            console.log("monthSTR: " + monthSTR);
-            console.log("daySTR: " + daySTR);
-            console.log("hourSTR: " + hourSTR);
-            console.log("minuteSTR: " + minuteSTR);
-
-            window.location.href = "/remindRemove?yearSTR=" + yearSTR + "&monthSTR=" + monthSTR + "&daySTR=" + daySTR + "&hourSTR=" + hourSTR + "&minuteSTR=" + minuteSTR + "&remindSTR=" + remindSTR;
-            
-        });
-        
-        
-        displayDiv.appendChild(dataDiv);
-        j++;
-
-
-    }
-
-    var acceptButton = document.createElement("button");
-    acceptButton.className = "acceptButton";
-    acceptButton.type = "button";
-    acceptButton.textContent = "VOLVER"
-         
-    var seeAlertsWindowDiv = document.getElementById(containerChildren);
-    seeAlertsWindowDiv.appendChild(acceptButton);
-         
-    acceptButton.addEventListener("click", function () {
-         
-        var ventanaEmergente = document.getElementById(containerParent);
-        ventanaEmergente.style.display = "none";
-         
-         
-         
-        });
-
+   card.appendChild(titulo);
+   card.appendChild(detalle);
+   return card;
 }
 
+function pintarEventosSemana() {
+   const contenedor = document.getElementById("EVENTS");
+   if (!contenedor) return;
 
-function cargarEventosEdit(containerParent, containerChildren, nombreRecordatorio, year, month, day, hour, minute)
-{
-    
-    var displayDiv = document.createElement("div");
-    displayDiv.className = "alertBoxEventDiv";
-    displayDiv.id = "alertFullContent";
+   contenedor.innerHTML = ""; // limpiar antes de pintar, evita duplicados
 
-    var seeEventsContent = document.getElementById(containerChildren);
-    seeEventsContent.appendChild(displayDiv);
-
-    var j = 0;
-
-    while (j < nombreRecordatorio.length)
-    {
-
-        var extraMinutes = "";
-        if (minute[j] < 10)
-        {
-
-            extraMinutes = "0";
-
-        }
-
-        var dataDiv = document.createElement("div");
-        dataDiv.className = "alertBoxContentDiv";
-
-        var individualEventDiv = document.createElement("div");
-        individualEventDiv.className = "individualEventDiv";
-        
-        var eventTitle = document.createElement("h3");
-        eventTitle.id = j + "remind";
-
-        var eventDetails = document.createElement("span");
-        eventDetails.className = "alertBoxContentDetails";
-        eventDetails.id = j + "detailsRemind";
-
-        eventTitle.textContent = nombreRecordatorio[j];
-        eventDetails.textContent = "PROGRAMADO PARA EL " + day[j] + "/" + month[j] + "/" + year[j] + " A LAS " + hour[j] + ":" + extraMinutes + minute[j];
-
-        individualEventDiv.appendChild(eventTitle);
-        individualEventDiv.appendChild(eventDetails);
-        dataDiv.appendChild(individualEventDiv)
-        
-        //  Add remove buttons
-        var editButton = document.createElement("button");
-        editButton.className = "editButton";
-        editButton.id = j;
-        editButton.type = "button";
-        editButton.textContent = "EDITAR"
-        dataDiv.appendChild(editButton);
-
-        editButton.addEventListener("click", function () {
-            ocultarVentana(containerParent);
-            mostrarVentana("editRemindWindow");
-
-
-            var inputDateEdit = document.getElementById("fechaEdit");
-            var inputTimeEdit = document.getElementById("horaEdit");
-            var inputNameRemindEdit = document.getElementById("nameRemindEdit"); 
-            
-            console.log(document.getElementById(this.id + "remind").textContent);
-            console.log(document.getElementById(this.id + "detailsRemind").textContent);
-
-            var remindSTR = document.getElementById(this.id + "remind").textContent;
-            var detailSTR = document.getElementById(this.id + "detailsRemind").textContent;
-
-            var splitDetails = detailSTR.split(" ");
-
-            let dateSTR = splitDetails[3];
-            let timeSTR = splitDetails[6];
-
-            
-            let splitDate = dateSTR.split("/");
-            let splitTime = timeSTR.split(":");
-            
-            let yearSTR = splitDate[2];
-            let monthSTR = splitDate[1];
-            let daySTR = splitDate[0];
-            
-            let hourSTR = splitTime[0];
-            let minuteSTR = splitTime[1];
-            
-            if (minuteSTR === "00") {
-                minuteSTR = "0";
-            }
-            if (daySTR.length == 1) {
-                daySTR = "0"+daySTR;
-            }
-
-            console.log(yearSTR + "-" + monthSTR + "-" + daySTR);
-            inputDateEdit.value = yearSTR + "-" + monthSTR + "-" + daySTR;
-            inputTimeEdit.value = timeSTR;
-            inputNameRemindEdit.value = remindSTR;
-            
-            document.getElementById("yearSTR").value = yearSTR;
-            document.getElementById("monthSTR").value = monthSTR;
-            document.getElementById("daySTR").value = daySTR;
-            document.getElementById("hourSTR").value = hourSTR;
-            document.getElementById("minuteSTR").value = minuteSTR;
-            document.getElementById("remindSTR").value = remindSTR;
-
-
-        });
-        
-        
-        displayDiv.appendChild(dataDiv);
-        j++;
-
-
-    }
-
-    var acceptButton = document.createElement("button");
-    acceptButton.className = "acceptButton";
-    acceptButton.type = "button";
-    acceptButton.textContent = "VOLVER"
-         
-    var seeAlertsWindowDiv = document.getElementById(containerChildren);
-    seeAlertsWindowDiv.appendChild(acceptButton);
-         
-    acceptButton.addEventListener("click", function () {
-         
-        var ventanaEmergente = document.getElementById(containerParent);
-        ventanaEmergente.style.display = "none";
-         
-         
-         
-        });
-
+   TODAY_REMINDERS.forEach(r => contenedor.appendChild(crearTarjetaRecordatorio(r, "today")));
+   TOMORROW_REMINDERS.forEach(r => contenedor.appendChild(crearTarjetaRecordatorio(r, "tomorrow")));
+   OTHER_REMINDERS.forEach(r => contenedor.appendChild(crearTarjetaRecordatorio(r, "other")));
 }
+
+// ============ Listas dentro de los modales (ver / editar / borrar) ============
+// Reemplaza a cargarEventosSee / cargarEventosDelete / cargarEventosEdit,
+// que antes eran tres funciones casi idénticas copiadas y pegadas.
+
+function crearFilaEvento(index, modo) {
+   const { names, years, months, days, hours, minutes } = ALL_REMINDERS;
+
+   const fila = document.createElement("div");
+   fila.className = "EVENTROW";
+
+   const info = document.createElement("div");
+   info.className = "EVENTROWINFO";
+
+   const titulo = document.createElement("h3");
+   titulo.textContent = names[index];
+
+   const detalle = document.createElement("span");
+   detalle.className = "EVENTROWDETAIL";
+   detalle.textContent =
+      `PROGRAMADO PARA EL ${days[index]}/${months[index]}/${years[index]} A LAS ${hours[index]}:${pad(minutes[index])}`;
+
+   info.appendChild(titulo);
+   info.appendChild(detalle);
+   fila.appendChild(info);
+
+   // Guardamos el dato crudo en el propio elemento — nada de volver
+   // a leer y parsear el texto que acabamos de escribir.
+   fila.dataset.nombre = names[index];
+   fila.dataset.anio = years[index];
+   fila.dataset.mes = months[index];
+   fila.dataset.dia = days[index];
+   fila.dataset.hora = hours[index];
+   fila.dataset.minuto = minutes[index];
+
+   if (modo === "delete") {
+      const boton = document.createElement("button");
+      boton.className = "REMOVEBUTTON";
+      boton.type = "button";
+      boton.textContent = "ELIMINAR";
+      boton.addEventListener("click", () => eliminarRecordatorio(fila.dataset));
+      fila.appendChild(boton);
+   }
+
+   if (modo === "edit") {
+      const boton = document.createElement("button");
+      boton.className = "EDITBUTTONSMALL";
+      boton.type = "button";
+      boton.textContent = "EDITAR";
+      boton.addEventListener("click", () => abrirFormularioEdicion(fila.dataset));
+      fila.appendChild(boton);
+   }
+
+   return fila;
+}
+
+function pintarListaEventos(containerId, modo) {
+   const contenedor = document.getElementById(containerId);
+   contenedor.innerHTML = ""; // clave: limpiar antes de repintar
+
+   for (let i = 0; i < ALL_REMINDERS.names.length; i++) {
+      contenedor.appendChild(crearFilaEvento(i, modo));
+   }
+}
+
+function eliminarRecordatorio(datos) {
+   const params = new URLSearchParams({
+      yearSTR: datos.anio,
+      monthSTR: datos.mes,
+      daySTR: datos.dia,
+      hourSTR: datos.hora,
+      minuteSTR: datos.minuto,
+      remindSTR: datos.nombre,
+   });
+   window.location.href = "/remindRemove?" + params.toString();
+}
+
+function abrirFormularioEdicion(datos) {
+   ocultarVentana("EDITEVENTSWINDOW");
+   mostrarVentana("EDITREMINDWINDOW");
+
+   const diaConCero = String(datos.dia).padStart(2, "0");
+   const mesConCero = String(datos.mes).padStart(2, "0");
+
+   document.getElementById("fechaEdit").value = `${datos.anio}-${mesConCero}-${diaConCero}`;
+   document.getElementById("horaEdit").value = `${String(datos.hora).padStart(2, "0")}:${pad(datos.minuto)}`;
+   document.getElementById("nameRemindEdit").value = datos.nombre;
+
+   document.getElementById("yearSTR").value = datos.anio;
+   document.getElementById("monthSTR").value = datos.mes;
+   document.getElementById("daySTR").value = diaConCero;
+   document.getElementById("hourSTR").value = datos.hora;
+   document.getElementById("minuteSTR").value = datos.minuto;
+   document.getElementById("remindSTR").value = datos.nombre;
+}
+
+// ============ Enganchar todo al abrir cada modal ============
+// En vez de pintar la lista "a mano" desde un <script> suelto dentro del
+// HTML (como estaba antes), la pintamos justo cuando el modal se abre.
+
+document.addEventListener("DOMContentLoaded", () => {
+   pintarEventosSemana();
+
+   document.getElementById("SEEALLBUTTON")
+      .addEventListener("click", () => pintarListaEventos("SEEEVENTSLIST", "see"));
+
+   document.getElementById("DELETEBUTTON")
+      .addEventListener("click", () => pintarListaEventos("DELETEEVENTSLIST", "delete"));
+
+   document.getElementById("EDITBUTTON")
+      .addEventListener("click", () => pintarListaEventos("EDITEVENTSLIST", "edit"));
+});

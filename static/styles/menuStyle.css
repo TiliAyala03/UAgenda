@@ -192,3 +192,391 @@ html, body
 {
   background-color: #ffffff10; 
 }
+
+#RIGHTCONTAINER
+{
+
+    height: 100%;
+    width: 80%;
+
+    display: flex;
+    flex-direction: column;
+
+    color: #e3e3e3;
+
+}
+
+#TITLE
+{
+
+    justify-content: center;
+    align-items: left;
+
+}
+
+#TITLE p
+{
+
+    font-size: large;
+
+}
+
+#EVENTSFULLCONTAINER
+{
+
+    width: 100%;
+    height: 40%;
+
+    display: flex;
+    flex-direction: row;
+
+    justify-content: center;
+    align-items: center;
+
+}
+
+#EVENTSCONTAINER
+{
+
+    height: 100%;
+    width: 65%;
+
+    background-color: #121216;
+    /*background-image: radial-gradient(circle at bottom center, #221e25 10%, #1e1f25 70%);*/
+
+    border-radius: 15px;
+    box-shadow: 1px 10px 10px rgba(0, 0, 0, 0.2);
+
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    justify-content: baseline;
+    overflow: hidden;
+
+
+}
+
+#EVENTSCONTAINER h4
+{
+
+    margin-left: 2%;
+
+}
+
+#BUTTONSCONTAINER
+{
+
+    height: 100%;
+    width: 25%;
+
+    background-color: #121216;
+    /*background-image: radial-gradient(circle at bottom center, #221e25 10%, #1e1f25 70%);*/
+
+    border-radius: 15px;
+    box-shadow: 1px 10px 10px rgba(0, 0, 0, 0.2);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+
+    margin-left: 5%;
+
+}
+
+#EVENTS
+{
+
+    width: 95%;
+    height: 75%;
+    background-color: #ffffff04;
+    margin-left: 2%;
+    border-radius: 15px;
+    overflow-y: auto;
+
+    scrollbar-width: thin; /* Barra más delgada (para Firefox) */
+    scrollbar-color: #555 transparent; /* Color de la barra y fondo (Firefox) */
+
+}
+
+/* ===================== TARJETAS DE #EVENTS (resumen semanal) ===================== */
+
+.EVENTCARD
+{
+    background-color: #ffffff05;
+    border-radius: 10px;
+    padding: 3% 4%;
+    margin: 3% 2%;
+    transition: background-color 0.2s ease;
+}
+
+.EVENTCARD:hover
+{
+    background-color: #ffffff0a;
+}
+
+.EVENTCARDTITLE
+{
+    margin: 0 0 2% 0;
+    color: #e3e3e3;
+    font-weight: 500;
+}
+
+.EVENTCARDDETAIL
+{
+    font-size: smaller;
+    color: #a0a0c4;
+}
+
+/* ===================== BOTONES DEL MENÚ LATERAL DE ACCIONES ===================== */
+
+#BUTTONSCONTAINER
+{
+    gap: 6%;
+}
+
+.MENUBUTTON
+{
+    width: 50%;
+    height: 15%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: #ffffff05;
+    color: #e3e3e3;
+    border-radius: 15px;
+
+    font-family: 'Poppins', sans-serif;
+    font-size: smaller;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+
+    border-width: 0.5px;
+    border-color: #e3e3e31f;
+}
+
+.MENUBUTTON:hover
+{
+    background-color: #ffffff10;
+}
+
+#ADDBUTTON
+{
+    background-color: #7868d8;
+}
+
+#ADDBUTTON:hover
+{
+    background-color: #6a5cc4;
+}
+
+#EDITBUTTON
+{
+    background-color: #cbb764;
+    color: #17181c;
+}
+
+#EDITBUTTON:hover
+{
+    background-color: #b8a459;
+}
+
+#DELETEBUTTON
+{
+    background-color: #cc8984;
+    color: #17181c;
+}
+
+#DELETEBUTTON:hover
+{
+    background-color: #bd7a75;
+}
+
+/* ===================== MODALES ===================== */
+
+.MODAL
+{
+    display: none; /* mostrarVentana()/ocultarVentana() alternan esto */
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+
+    background-color: rgba(10, 10, 12, 0.6);
+    backdrop-filter: blur(3px);
+
+    align-items: center;
+    justify-content: center;
+
+    z-index: 100;
+}
+
+.MODALBOX
+{
+    width: min(90vw, 420px);
+    max-height: 80vh;
+    overflow-y: auto;
+
+    background-color: #121216;
+    color: #e3e3e3;
+
+    border-radius: 20px;
+    box-shadow: 1px 10px 10px rgba(0, 0, 0, 0.2);
+
+    padding: 6% 8%;
+
+    display: flex;
+    flex-direction: column;
+
+    scrollbar-width: thin;
+    scrollbar-color: #555 transparent;
+}
+
+.MODALBOX h2,
+.MODALBOX h3
+{
+    margin-top: 0;
+    text-align: center;
+}
+
+.MODALBOX label
+{
+    font-size: smaller;
+    color: #a0a0c4;
+    margin-bottom: 2%;
+    display: block;
+}
+
+.INPUTTEXT,
+.SELECTOR
+{
+    width: 100%;
+    height: 5vh;
+
+    background-color: #0f1013;
+    color: azure;
+
+    border: none;
+    border-radius: 10px;
+    margin-bottom: 6%;
+    padding: 0 4%;
+
+    font-family: 'Poppins', sans-serif;
+    box-sizing: border-box;
+}
+
+.MODALBUTTONS
+{
+    display: flex;
+    gap: 4%;
+    margin-top: 4%;
+
+}
+
+.ACCEPTBUTTON,
+.DECLINEBUTTON
+{
+    flex: 1;
+    height: 5vh;
+
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    font-weight: bold;
+    font-family: 'Poppins', sans-serif;
+    transition: background-color 0.2s ease;
+}
+
+.ACCEPTBUTTON
+{
+    background-color: #7868d8;
+    color: aliceblue;
+}
+
+.ACCEPTBUTTON:hover
+{
+    background-color: #6a5cc4;
+}
+
+.DECLINEBUTTON
+{
+    background-color: #ffffff08;
+    color: #e3e3e3;
+}
+
+.DECLINEBUTTON:hover
+{
+    background-color: #ffffff14;
+}
+
+/* ===================== LISTAS DENTRO DE LOS MODALES (ver/editar/borrar) ===================== */
+
+.EVENTSLIST
+{
+    display: flex;
+    flex-direction: column;
+    gap: 3%;
+    margin: 4% 0;
+}
+
+.EVENTROW
+{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 3%;
+
+    background-color: #ffffff05;
+    border-radius: 12px;
+    padding: 3% 4%;
+}
+
+.EVENTROWINFO h3
+{
+    margin: 0 0 1% 0;
+    font-size: medium;
+    text-align: left;
+}
+
+.EVENTROWDETAIL
+{
+    font-size: smaller;
+    color: #a0a0c4;
+}
+
+.REMOVEBUTTON,
+.EDITBUTTONSMALL
+{
+    border: none;
+    border-radius: 10px;
+    padding: 2% 4%;
+    font-size: smaller;
+    font-weight: bold;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: filter 0.2s ease;
+}
+
+.REMOVEBUTTON
+{
+    background-color: #cc8984;
+    color: #17181c;
+}
+
+.EDITBUTTONSMALL
+{
+    background-color: #cbb764;
+    color: #17181c;
+}
+
+.REMOVEBUTTON:hover,
+.EDITBUTTONSMALL:hover
+{
+    filter: brightness(1.1);
+}
