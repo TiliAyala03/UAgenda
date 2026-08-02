@@ -29,7 +29,6 @@ app.config["MYSQL_PASSWORD"] = MYSQL_PASSWORD
 app.config["MYSQL_DB"] = "prflask"
 app.config["MYSQL_CURSORCLASS"] = "DictCursor"
 
-
 # Configuración de Flask-Mail
 app.config["MAIL_SERVER"] = "smtp.gmail.com"
 app.config["MAIL_PORT"] = 587
@@ -42,30 +41,7 @@ app.config["MAIL_DEFAULT_SENDER"] = "unagenda.of@gmail.com"
 
 # Inicialización de la extensión MySQL
 mysql = MySQL(app)
-
 mail = Mail(app)
-
-def fecha_hora():
-    now = datetime.now(colombia_zona_horaria)
-    formatted_date = now.strftime("%Y-%m-%d %H:%M:%S")
-    currentYear = now.strftime("%Y")
-    currentMonth = now.strftime("%m")
-    currentDay = now.strftime("%d")
-    currentHour = now.strftime("%H")
-    currentMinute = now.strftime("%M")
-
-    currentTime = (currentYear, currentMonth, currentDay, currentHour, currentMinute)
-
-    return formatted_date, currentTime
-
-def obtener_fecha_hora(sublista):
-    return datetime(sublista[1], sublista[2], sublista[3], sublista[4], sublista[5])
-
-def generate_random_token(length=32):
-    characters = string.ascii_letters + string.digits
-    token = "".join(random.choice(characters) for _ in range(length))
-    return token
-
 
 def login_required(f):
     @wraps(f)
@@ -156,10 +132,9 @@ def reset_password():
     return render_template("reset.html", data=data)
 
 @app.route("/logout", methods=["POST"])
-
 def logout():
     session.clear()
-    return render_template("index.html")  # Redirige al usuario a la página de inicio o a donde desees
+    return render_template("index.html")
     
 
 @app.route("/")
@@ -1512,6 +1487,27 @@ def trazaSelect():
     lista_de_listas = [list(fila.values()) for fila in resultados]
     mysql.connection.commit()
     return lista_de_listas
+
+def fecha_hora():
+    now = datetime.now(colombia_zona_horaria)
+    formatted_date = now.strftime("%Y-%m-%d %H:%M:%S")
+    currentYear = now.strftime("%Y")
+    currentMonth = now.strftime("%m")
+    currentDay = now.strftime("%d")
+    currentHour = now.strftime("%H")
+    currentMinute = now.strftime("%M")
+
+    currentTime = (currentYear, currentMonth, currentDay, currentHour, currentMinute)
+
+    return formatted_date, currentTime
+
+def obtener_fecha_hora(sublista):
+    return datetime(sublista[1], sublista[2], sublista[3], sublista[4], sublista[5])
+
+def generate_random_token(length=32):
+    characters = string.ascii_letters + string.digits
+    token = "".join(random.choice(characters) for _ in range(length))
+    return token
 
 # Configuración de la clave secreta para las sesiones de usuario
 if __name__ == "__main__":

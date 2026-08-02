@@ -2,18 +2,75 @@
 <html lang="es">
    <head>
       <meta charset="utf-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-      <link rel="icon" href="{{url_for('static', filename='img/unAgenda1.ico')}}">
-      <title>unAgenda</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="icon" href="{{url_for('static', filename='img/UAgendaIcon.ico')}}">
+      <title>UAgenda</title>
       <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
-      <link rel = "stylesheet" href = "{{url_for('static', filename='assets/css/responsive.css')}}">
       <link rel = "stylesheet" href = "{{url_for('static', filename='styles/menuStyle.css')}}">
       <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
       <script src="static/js/gestorMainMenu.js"></script>
       <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.5.0-beta4/html2canvas.min.js"></script>
    </head>
-   <body class="g-sidenav-show  bg-gray-100">
+   <body>
+
+      <div id="MAINCONTAINER">
+         
+         <div id="SIDEBARCONTAINER">
+
+            <div id="SIDEBAR">
+
+               <a href = "admin" id="MAINMENUA">
+                  <img src="static/img/UAgenda2.png" href = "admin" id="MAINMENUIMG">
+               </a>
+
+               <a href = "admin" class="OPTION">
+                  <div class="SELECTEDOPTION">
+                     <img src="static/img/mainMenuIcon.png" class="ICON">
+                     <p>Menú Principal</p>
+                  </div>
+               </a>
+               <a href = "schedule" class="OPTION">
+                  <div class="UNSELECTEDOPTION">
+                     <img src="static/img/scheduleIcon2.png" class="ICON">
+                     <p>Horario</p>
+                  </div>
+               </a>
+               <a href = "calculator" class="OPTION">
+                  <div class="UNSELECTEDOPTION">
+                     <img src="static/img/calculatorIcon2.png" class="ICON">
+                     <p>Calculadora de Promedios</p>
+                  </div>
+               </a>
+               <a href = "cuaderno" class="OPTION">
+                  <div class="UNSELECTEDOPTION">
+                     <img src="static/img/notebookIcon2.png" class="ICON">
+                     <p>Mis Apuntes</p>
+                  </div>
+               </a>
+               <a href = "flashcards" class="OPTION">
+                  <div class="UNSELECTEDOPTION">
+                     <img src="static/img/flashcardsIcon2.png" class="ICON">
+                     <p>Tarjetas de Estudio</p>
+                  </div>
+               </a>
+
+               <div id="SEPARATOR"></div>
+               
+               <form action = "logout" id="FORMLOGOUT" method="post">
+                  <button type="submit" id="LOGOUTBUTTON">
+                     <img src="static/img/logOutIcon.png" class="ICON2">
+                     <p>Cerrar Sesión</p>
+                  </button>
+               </form>
+
+            </div>
+
+         </div>
+
+      </div>
+
+      <!--
       <aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3 " id="sidenav-main">
          <a href = "admin">
             <img id = "unAgendaLabel" src = "{{url_for('static', filename='img/unAgenda2.png')}}" width="400" style="margin-bottom:40px"/>
@@ -196,7 +253,6 @@
                      </div>
                   </div>
                </div>
-               <!-- Edit reminder -->
                <div class="addRemindWindow" id="editRemindWindow">
                   <div id="editRemindForm">
                      <div id="formBody">
@@ -380,6 +436,6 @@
             </div>
          </div>
       </div>
-      
+      -->
    </body>
 </html>
