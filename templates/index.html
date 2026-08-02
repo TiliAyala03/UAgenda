@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>UAgenda</title>
+      <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+      <link rel="stylesheet" href="{{url_for('static', filename='styles/loginStyle.css')}}">
+      <link rel="icon" href="{{url_for('static', filename='img/UAgendaIcon.ico')}}">
+      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.5.0-beta4/html2canvas.min.js"></script>
+   </head>
+   <body>
+      <div id="MAINCONTAINER">
+
+         <img id="BANNER" src="static/img/UAgenda.png">
+
+         <div id="LOGINCONTAINER">
+            <h1>INICIAR SESIÓN</h1>
+               <form class="formControl" action="loginAccess" method="POST" >
+                  <input type="email" id="exampleInputEmail1" aria-describedby="emailHelp"  name="txtEmail" placeholder="Correo Electrónico" required="required" />
+                  <input type="password" id="exampleInputPassword1" name="txtPassword" placeholder="Contraseña" required="required" />
+                  {% if error_message %}
+                  <div class="alert alert-danger" role="alert">
+                     {{ error_message }}
+                  </div>
+                  {% endif %}
+                  <button type="submit" class="btn btn-primary btn-block btn-large" id="LOGINBUTTON">INGRESAR</button>
+               </form>
+               <div>
+                  <a class="recuper" for="emailHelp" href="/recuperacion">Olvidé mi contraseña</a> |
+                  <a class="registerNew" for="exampleRegister" href="/register">Registrarme</a>
+               </div>
+         </div>
+
+      </div>
+   </body>
+</html>

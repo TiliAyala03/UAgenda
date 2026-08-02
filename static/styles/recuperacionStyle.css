@@ -1,0 +1,117 @@
+body
+{
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    background: radial-gradient(circle, #23232c, #1e1f25);
+
+    font-family: 'Poppins', sans-serif;
+
+    background-image: url('../img/background.png'); /* Ruta local o URL web */
+    background-size: contain; /* Hace que la imagen cubra todo el div */
+    background-position: center; /* Centra la imagen dentro del div */
+    background-repeat: repeat; /* Evita que la imagen se repita en mosaico */
+
+
+}
+
+#MAINCONTAINER
+{
+
+    height: 100%;
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+#BANNER
+{
+
+    height: 22vh;
+    width: auto;
+
+    margin-top: 3vh;
+    margin-bottom: 2vh;
+
+}
+
+#PASSWORDCONTAINER
+{
+
+    height: 55vh;
+    width: 20%;
+
+    background-color: #14151a;
+    color: rgb(226, 226, 226);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    text-align: center;
+    border-radius: 25px;
+    box-shadow: 1px 20px 10px rgba(0, 0, 0, 0.2);
+    
+
+}
+
+.formControl
+{
+
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+
+}
+
+#exampleInputEmail1
+{
+
+    background-color: #0f1013;
+    height: 5vh;
+    width: 70%;
+
+    border: #0f101300;
+    margin-bottom: 5%;
+    color: azure;
+    border-radius: 10px;
+
+
+}
+
+#SENDBUTTON
+{
+
+    height: 4vh;
+    width: 8vw;
+
+    margin-top: 10%;
+    margin-bottom: 10%;
+
+    border-radius: 20px;
+    border: #2e385800;
+    color: aliceblue;
+    background-color: #ffabc7;
+    font-weight: bold;
+    cursor: pointer;
+
+}
+
+p
+{
+
+    font-size: smaller;
+
+}
