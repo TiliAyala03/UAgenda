@@ -3,61 +3,72 @@
    <head>
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>unAgenda - Horario</title>
-      <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+      <title>UAgenda</title>
       <link rel="stylesheet" href="{{url_for('static', filename='styles/scheduleStyle.css')}}">
-      <link rel="icon" href="{{url_for('static', filename='img/unAgenda1.ico')}}">
+      <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+      <link rel="icon" href="{{url_for('static', filename='img/UAgendaIcon.ico')}}">
       <script src="static/js/gestorHorario.js"></script>
       <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.5.0-beta4/html2canvas.min.js"></script>
    </head>
    <body>
-      <div class="mainContainer">
-         <!-- Contiene a todo el código, dado que es el header el que contiene el fondo de pantalla. Si se coloca alguna división después de esta, aparecerá -->
-         <!-- debajo del fondo, lo cual obviamente no queremos.                                                                                              -->
-         <div class="sideMenuContainer">
-            <!-- MENU LATERAL -->
-            <br>
-            <a href="admin">
-            <img id="unAgendaLabel" src="{{url_for('static', filename='img/unAgenda1.png')}}" width="100" />
-            </a>
-            <br><br>
-            <a href="admin">
-               <div class="iconBox">
-                  <img class="iconImage" src="{{url_for('static', filename='img/mainmenumini.png')}}" width="100" />
-               </div>
-            </a>
-            <a href="schedule">
-               <div class="iconBox">
-                  <img class="iconImage" src="{{url_for('static', filename='img/scheduleindexmini.png')}}"
-                     width="100" />
-               </div>
-            </a>
-            <a href="calculator">
-               <div class="iconBox">
-                  <img class="iconImage" src="{{url_for('static', filename='img/calculatorindexmini.png')}}"
-                     width="100" />
-               </div>
-            </a>
-            <a href="cuaderno">
-               <div class="iconBox">
-                  <img class="iconImage" src="{{url_for('static', filename='img/notebookmini.png')}}"
-                     width="100" />
-               </div>
-            </a>
-            <a href="flashcards">
-               <div class="iconBox">
-                  <img class="iconImage" src="{{url_for('static', filename='img/flashcardsmini.png')}}" width="100" />
-               </div>
-            </a>
+      <div id="MAINCONTAINER">
+         
+         <div id="SIDEBARCONTAINER">
+
+            <div id="SIDEBAR">
+
+               <a href = "admin" id="MAINMENUA">
+                  <img src="static/img/UAgenda2.png" href = "admin" id="MAINMENUIMG">
+               </a>
+
+               <a href = "admin" class="OPTION">
+                  <div class="UNSELECTEDOPTION">
+                     <img src="static/img/mainMenuIcon2.png" class="ICON">
+                     <p>Menú Principal</p>
+                  </div>
+               </a>
+               <a href = "schedule" class="OPTION">
+                  <div class="SELECTEDOPTION">
+                     <img src="static/img/scheduleIcon.png" class="ICON">
+                     <p>Horario</p>
+                  </div>
+               </a>
+               <a href = "calculator" class="OPTION">
+                  <div class="UNSELECTEDOPTION">
+                     <img src="static/img/calculatorIcon2.png" class="ICON">
+                     <p>Calculadora de Promedios</p>
+                  </div>
+               </a>
+               <a href = "cuaderno" class="OPTION">
+                  <div class="UNSELECTEDOPTION">
+                     <img src="static/img/notebookIcon2.png" class="ICON">
+                     <p>Mis Apuntes</p>
+                  </div>
+               </a>
+               <a href = "flashcards" class="OPTION">
+                  <div class="UNSELECTEDOPTION">
+                     <img src="static/img/flashcardsIcon2.png" class="ICON">
+                     <p>Tarjetas de Estudio</p>
+                  </div>
+               </a>
+
+               <div id="SEPARATOR"></div>
+               
+               <form action = "logout" id="FORMLOGOUT" method="post">
+                  <button type="submit" id="LOGOUTBUTTON">
+                     <img src="static/img/logOutIcon.png" class="ICON2">
+                     <p>Cerrar Sesión</p>
+                  </button>
+               </form>
+
+            </div>
+
          </div>
          <div class="contentContainer">
             <div class="titleContainer">
-               <br><br>
                <h1 id="instrucionLabel1">Tu Horario de la Semana</h1>
                <h3 id="instructionLabel2">Revisa tus eventos semanales programados o<br> añade alguno nuevo: </h3>
-               <br><br>
-               <div id="imagen"></div>
             </div>
             <div class="buttonsContainer">
                <div class="button" id="addButton" onclick="mostrarVentana()">
@@ -311,7 +322,6 @@
                         </th>
                   </tr>
                </table>
-               <br><br><br><br>
             </div>
          </div>
          <div class="addEventWindow" id="addEventWindow">

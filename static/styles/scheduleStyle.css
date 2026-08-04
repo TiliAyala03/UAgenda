@@ -1,551 +1,597 @@
-* {
-
+html, body
+{
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+
     font-family: 'Poppins', sans-serif;
 
+    background-color: #17181c;
+    /*background-image: radial-gradient(circle at bottom center, #1a171c 10%, #17181c 70%);*/
+
 }
 
-/* CONFIGURACIÓN DEL CONTENEDOR DE TODO */
+#MAINCONTAINER
+{
 
-.mainContainer {
-
-    background-image: url(/static/img/background.png);
-    background-size: cover;
+    width: 100vw;       
     height: 100vh;
-    overflow-y: hidden;
+    position: relative;
+    z-index: 0;
+    display: flex;
+    flex-direction: row;
 
 }
 
-/* CONFIGURACIÓN DEL MENÚ LATERAL Y DE SUS COMPONENTES */
+#MAINCONTAINER::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: url('../img/background2.png');
+  background-size: cover;
+  background-position: center;
+  opacity: 0.05; 
+  z-index: -1; 
+}
 
-.sideMenuContainer {
+#SIDEBARCONTAINER
+{
 
-    background-color: rgba(169, 169, 169, .5);
+    height: 100%;
+    width: 20%;
 
-    width: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+#SIDEBAR
+{
+
+    height: 90%;
+    width: 90%;
+
+    background-color: #121216;
+    /*background-image: radial-gradient(circle at bottom center, #221e25 10%, #1e1f25 70%);*/
+
+    border-radius: 30px;
+    box-shadow: 1px 10px 10px rgba(0, 0, 0, 0.2);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: top;
+    overflow: hidden;
+
+}
+
+#MAINMENUA
+{
+
+    height: 15%;
+    margin-top: 5%;
+
+}
+
+#MAINMENUIMG
+{
+
     height: 100%;
 
-    max-height: 100vh;
-
-    float: left;
-    text-align: center;
-    overflow-y: auto;
-
 }
 
-#unAgendaLabel {
-
-    max-width: 100%;
-    max-height: 100%;
-
-    padding-left: 0.25rem;
-    padding-right: 0.25rem;
-    padding-top: 0.25rem;
-
-}
-
-.iconBox {
-
-    max-height: 100%;
+.OPTION
+{
 
     width: 80%;
-    margin-right: 10%;
-    margin-left: 10%;
+    height: 8%;
+    margin-top: 5%;
+    text-decoration: none;
 
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
-    border-radius: 10px;
+}
+
+.SELECTEDOPTION
+{
+
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    flex-direction: row;
+
+    background-color: #ffffff05;
+    border-radius: 15px;
+
+    align-items: center;
+    justify-content: left;
+    color: #e3e3e3;
+
+}
+
+.ICON
+{
+
+    height: 70%;
+    margin-left: 10%;
+    margin-right: 10%;
+
+}
+
+.ICON2
+{
+
+    height: 70%;
+    margin-right: 10%;
+
+}
+
+.ICON3
+{
+
+    height: 50%;
+    margin-right: 2%;
+
+}
+
+.UNSELECTEDOPTION
+{
+
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    flex-direction: row;
+
+    border-radius: 15px;
+
+    align-items: center;
+    justify-content: left;
+    color: #a0a0c4;
 
     transition: background-color 0.3s ease;
 
 }
 
-.iconBox:hover {
+.UNSELECTEDOPTION:hover
+{
+  background-color: #ffffff05; 
+}
 
-    background-color: rgba(0, 0, 0, 0.2);
+#SEPARATOR
+{
+
+    width: 80%;
+    height: 2px;
+    background-color: #ffffff11;
+
+    margin-top: 10%;
 
 }
 
-.iconImage {
+#LOGOUTBUTTON
+{
 
+    width: 12vw;
+    height: 5vh;
 
-    max-width: 100%;
-    max-height: 100%;
+    display: flex;
+    flex-direction: row;
 
+    border-radius: 20px;
+
+    align-items: center;
+    justify-content: center;
+    color: #e3e3e3;
+    background-color: #ffffff05;
+    transition: background-color 0.3s ease;
+
+    margin-top: 15%;
+
+    cursor: pointer;
+    border-width: 0.5px;
+    border-color: #e3e3e31f;
+
+    
 
 }
 
-/* CONFIGURACIÓN DEL CONTENEDOR PRINCIPAL */
+#LOGOUTBUTTON:hover
+{
+  background-color: #ffffff10; 
+}
+
+/* La sidebar vive en sidebarStyle.css — este archivo es solo lo
+   específico de la página de Horario. */
+
+* {
+    box-sizing: border-box;
+}
+
+/* ===================== CONTENEDOR DERECHO ===================== */
 
 .contentContainer {
 
-    width: 90%;
     height: 100%;
+    width: 80%;
 
-    max-height: 100vh;
+    display: flex;
+    flex-direction: column;
 
-    float: right;
-    text-align: center;
-    position: relative;
+    color: #e3e3e3;
+
+    padding: 2% 3%;
+    overflow-y: auto; /* si el contenido no entra, hace scroll ACÁ,
+                          no desborda la ventana entera */
+
+    scrollbar-width: thin;
+    scrollbar-color: #555 transparent;
 }
 
-/* CONFIGURACIÓN DEL ENUNCIADO DE LA PÁGINA */
+/* ===================== TÍTULO ===================== */
 
 .titleContainer {
 
-    color: white;
-    text-align: center;
-
-    max-height: 30%;
-
-    overflow: hidden;
-
+    text-align: left;
+    flex-shrink: 0; /* que nunca se achique para hacerle lugar a la tabla */
 }
 
-/* CONFIGURACIÓN DE LOS BOTONES DE LA PÁGINA */
+.titleContainer h1 {
+    margin: 0 0 1% 0;
+}
+
+.titleContainer h3 {
+    font-weight: 400;
+    color: #a0a0c4;
+    margin: 0 0 3% 0;
+}
+
+/* ===================== BOTONES DE ACCIÓN ===================== */
 
 .buttonsContainer {
 
-    height: 10%;
-    max-height: 10%;
-
-    width: 100%;
-    max-width: 100%;
-
-    text-align: center;
-    margin: 0 auto;
-
+    display: flex;
+    gap: 3%;
+    margin-bottom: 3%;
+    flex-shrink: 0;
 }
 
-.button {
-
-
-    width: 12%;
-    height: 100%;
-
-    max-width: 15%;
-    max-height: 100%;
-
-    margin-left: 2%;
-    margin-right: 2%;
-
-    padding: 0.5rem;
-
-    border-radius: 50px;
-    transition: box-shadow 0.3s ease;
-
-    text-align: center;
-
-    float: left;
-
-}
-
+.button,
 .button2 {
 
+    width: 4rem;
+    height: 4rem;
 
-    width: 12%;
-    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-    max-width: 15%;
-    max-height: 100%;
+    background-color: #121216;
+    border-radius: 50%;
+    box-shadow: 1px 10px 10px rgba(0, 0, 0, 0.2);
 
-    margin-left: 2%;
-    margin-right: 2%;
-
-    padding: 0.5rem;
-
-    border-radius: 50px;
-    transition: box-shadow 0.3s ease;
-
-    text-align: center;
-
-    float: right;
-
-}
-
-.button:hover {
-
-    box-shadow: 0 0.2rem 0.6rem rgba(0, 0, 0, 1);
     cursor: pointer;
-
+    transition: background-color 0.2s ease;
 }
 
+.button:hover,
 .button2:hover {
-
-    box-shadow: 0 0.2rem 0.6rem rgba(0, 0, 0, 1);
-    cursor: pointer;
-
+    background-color: #1c1d22;
 }
 
-#addButtonImage {
-
-    max-height: 100%;
-    max-width: 30%;
-
-}
-
-
-#removeButtonImage {
-
-    max-height: 100%;
-    max-width: 30%;
-
-}
-
+#addButtonImage,
+#removeButtonImage,
+#searchButtonImage,
 #captureButtonImage {
-
-    max-height: 100%;
-    max-width: 30%;
-
+    max-width: 45%;
+    max-height: 45%;
 }
 
-#searchButtonImage {
-
-    max-height: 100%;
-    max-width: 30%;
-
-}
-
-/* CONFIGURACIÓN DE LA TABLA Y SUS PROPIEDADES */
+/* ===================== TABLA DE HORARIO ===================== */
 
 .scheduleContainer {
 
+    flex: 1; /* ocupa el espacio restante del contenedor */
+    min-height: 0; /* imprescindible para que el overflow interno funcione dentro de un flex */
+    overflow: auto;
 
-    width: 100%;
-    height: 60%;
+    background-color: #121216;
+    border-radius: 15px;
+    box-shadow: 1px 10px 10px rgba(0, 0, 0, 0.2);
 
+    padding: 1.5rem;
 
-    max-width: 100%;
-    max-height: 60%;
-
-    padding-top: 1rem;
-    padding-left: 1.7rem;
-    padding-bottom: 0.5rem;
-    overflow-y: auto;
-
-
-
+    scrollbar-width: thin;
+    scrollbar-color: #555 transparent;
 }
 
 #schedule {
-
-    margin: 0 auto;
-
+    table-layout: fixed;   /* ← agregar esta línea */
+    border-collapse: separate;
+    border-spacing: 4px;
+    width: 100%;
 }
 
 .scheduleHeader {
 
-    background-color: rgb(136, 123, 123);
-    color: white;
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-    padding-left: 2rem;
-    padding-right: 2rem;
-    border-radius: 5px;
+    background-color: #ffffff08;
+    color: #e3e3e3;
 
-    width: 10rem;
-    max-width: 10rem;
+    padding: 0.75rem 0.5rem;
+    border-radius: 8px;
 
+    font-size: smaller;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+.scheduleBody1,
+.scheduleBody2 {
+
+    color: #e3e3e3;
+    padding: 0.5rem;
+    border-radius: 8px;
+
+    text-align: center;
+    font-size: smaller;
+
+    width: 12%;             /* ← reemplaza a min-width: 6rem */
+    word-wrap: break-word;  /* ← por si un evento es una sola palabra larga */
+    overflow-wrap: break-word;
 }
 
 .scheduleBody1 {
-
-    background-color: rgb(70, 70, 70);
-    color: white;
-    padding: 0.5rem;
-
-    width: 10rem;
-    max-width: 10rem;
-
+    background-color: #ffffff05;
 }
 
 .scheduleBody2 {
-
-    background-color: rgb(82, 82, 82);
-    color: white;
-    padding: 0.5rem;
-
-    width: 10rem;
-    max-width: 10rem;
-
+    background-color: #ffffff08;
 }
 
-.addEventWindow {
+/* la primera columna (las horas) se distingue del resto */
+.scheduleBody1:first-child,
+.scheduleBody2:first-child {
+    color: #a0a0c4;
+    font-weight: 500;
+    background-color: transparent;
+}
+
+/* ===================== MODALES ===================== */
+
+.addEventWindow,
+.removeEventWindow,
+.editEventWindow,
+.downloadEventWindow {
+
     display: none;
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+
+    background-color: #0a0a0c99;
+    backdrop-filter: blur(3px);
+
     align-items: center;
+    justify-content: center;
+
+    z-index: 100;
 }
 
-#addEventForm {
-    background: white;
-    padding: 20px;
-    border-radius: 5px;
+#addEventForm,
+#removeEventContent,
+#editEventContent,
+#downloadEventContent {
+
+    width: min(90vw, 420px);
+    max-height: 80vh;
+    overflow-y: auto;
+
+    background-color: #121216;
+    color: #e3e3e3;
+
+    border-radius: 20px;
+    box-shadow: 1px 10px 10px rgba(0, 0, 0, 0.2);
+
+    padding: 1% 2%;
+
+    scrollbar-width: thin;
+    scrollbar-color: #555 transparent;
+}
+
+/* removeEventContent/editEventContent listan varios eventos: les damos
+   más ancho que al formulario simple de agregar */
+#removeEventContent,
+#editEventContent {
+    width: min(90vw, 480px);
+    text-align: left;
+}
+
+#addEventForm h2,
+#removeEventContent h2,
+#editEventContent h2 {
     text-align: center;
+    margin-top: 0;
 }
 
-.inputText {
+#addEventForm label {
+    font-size: smaller;
+    color: #a0a0c4;
+    display: block;
+    margin-bottom: 2%;
+}
 
-    background: rgb(219, 219, 219);
-    width: 80%;
-    height: 2.5rem;
+.inputText,
+.selector {
 
-    border-radius: 10px;
+    width: 100%;
+    height: 5vh;
+
+    background-color: #0f1013;
+    color: azure;
+
     border: none;
+    border-radius: 10px;
+    margin-bottom: 6%;
+    padding: 0 4%;
 
-    text-align: center;
-
+    font-family: 'Poppins', sans-serif;
 }
 
 .selector {
+    width: 100%;
+}
 
-    width: 40%;
-    height: 2.5rem;
-    border-radius: 10px;
+#addEventWindowButtons {
+    display: flex;
+    gap: 4%;
+    margin-top: 2%;
+}
 
+#formButtonAccept,
+#formButtonDecline {
+
+    flex: 1;
+    height: 5vh;
+
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    font-weight: bold;
+    font-family: 'Poppins', sans-serif;
+    transition: background-color 0.2s ease;
+    margin: 0;
+    float: none;
 }
 
 #formButtonAccept {
+    background-color: #7868d8;
+    color: aliceblue;
+}
 
-    margin: 1rem;
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
-
-    border-radius: 10px;
-    background-color: rgb(114, 218, 157);
-
-
-
+#formButtonAccept:hover {
+    background-color: #6a5cc4;
 }
 
 #formButtonDecline {
-
-    margin: 1rem;
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
-
-    border-radius: 10px;
-    background-color: rgb(204, 137, 132);
-
-    float: right;
-
+    background-color: #ffffff08;
+    color: #e3e3e3;
 }
 
-.removeEventWindow {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    justify-content: center;
-    align-items: center;
+#formButtonDecline:hover {
+    background-color: #ffffff14;
 }
 
-#removeEventContent {
-    width: 60%;
-    background: white;
-    padding: 20px;
-    border-radius: 5px;
-    text-align: center;
-}
+/* ===================== LISTAS DE EVENTOS (borrar / editar) ===================== */
 
-.removeBoxEventDiv {
-
+.removeBoxEventDiv,
+.editBoxEventDiv {
+    max-height: 50vh;
     overflow-y: auto;
-    height: 25rem;
-    max-height: 25rem;
+    margin-bottom: 3%;
 
+    scrollbar-width: thin;
+    scrollbar-color: #555 transparent;
 }
 
-.removeBoxContentDiv {
+.removeBoxContentDiv,
+.editBoxContentDiv {
 
-    text-align: left;
-    padding: 1rem;
-    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 3%;
 
+    background-color: #ffffff05;
+    border-radius: 12px;
+    padding: 3% 4%;
+    margin-bottom: 3%;
 }
 
 .individualEventDiv {
-    width: 80%;
-    float: left;
-    padding: 0.5rem;
-
+    width: auto;
+    float: none;
+    padding: 0;
 }
 
-.removeBoxEventDetails {
+.individualEventDiv h3 {
+    margin: 0 0 1% 0;
+    font-size: medium;
+}
 
-    font-style: italic;
-    color: darkgray;
+.removeBoxEventDetails,
+.editBoxEventDetails {
+    font-style: normal;
+    font-size: smaller;
+    color: #a0a0c4;
+    margin-right: 0.5rem;
+}
 
+.removeButton,
+.editButton,
+.acceptButton {
+
+    border: none;
+    border-radius: 10px;
+    padding: 0.4rem 0.9rem;
+    font-size: smaller;
+    font-weight: bold;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: filter 0.2s ease;
+    margin: 0;
+    float: none;
 }
 
 .removeButton {
-
-    margin: 1rem;
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
-
-    border-radius: 10px;
-    background-color: rgb(204, 137, 132);
-
-    float: left;
-
-}
-
-.acceptButton {
-
-    margin: 1rem;
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
-
-    border-radius: 10px;
-    background-color: rgb(163, 218, 163);
-
-    float: right;
-
+    background-color: #cc8984;
+    color: #17181c;
 }
 
 .editButton {
-
-    margin: 1rem;
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
-
-    border-radius: 10px;
-    background-color: rgb(255, 198, 132);
-
-    float: left;
-
+    background-color: #cbb764;
+    color: #17181c;
 }
 
+.acceptButton {
+    background-color: #ffffff08;
+    color: #e3e3e3;
+    display: block;
+    margin: 3% 0 0 auto;
+}
+
+.removeButton:hover,
 .editButton:hover {
-
-    cursor: pointer;
-
-}
-
-.removeButton:hover {
-
-    cursor: pointer;
-
+    filter: brightness(1.1);
 }
 
 .acceptButton:hover {
-
-    cursor: pointer;
-
+    background-color: #ffffff14;
 }
 
+/* ===================== VENTANA DE DESCARGA ===================== */
 
-
-.editEventWindow {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    justify-content: center;
-    align-items: center;
-}
-
-#editEventContent {
-    width: 60%;
-    background: white;
-    padding: 20px;
-    border-radius: 5px;
-    text-align: center;
-}
-
-.editBoxEventDiv {
-
-    overflow-y: auto;
-    height: 25rem;
-    max-height: 25rem;
-
-}
-
-.editBoxContentDiv {
-
-    text-align: left;
-    padding: 1rem;
-    width: 100%;
-
-}
-
-.editBoxEventDetails {
-
-    font-style: italic;
-    color: darkgray;
-
-}
-
-/* ESTILO PARA LA VENTANA DE DESCARGAR HORARIO */
-.downloadEventWindow {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    justify-content: center;
-    text-align: center;
-    background-color: rgba(0, 0, 0, 0.5);
-}
-
-.downloadEventContent {
-    background-color: #fff;
-    margin: 5% auto;
-    padding: 20px;
-    width: 70%;
-    border-radius: 5px;
-    text-align: center;
-}
 #textHeader {
     display: flex;
-    text-align: center;
-    justify-content: center;
+    align-items: center;
+    justify-content: space-between;
 }
 
 #textHeader h2 {
-    margin-right: 15px;
-    margin-left: 40px
+    margin: 0;
 }
 
 #textHeader img {
-    margin-left: 10px;
-}
-
-#downBtn,
-#cerrarDownBtn {
+    height: 1.5rem;
     cursor: pointer;
 }
 
 .tabla-duplicada {
     height: 100%;
     width: 100%;
+    overflow: auto;
+    margin-top: 4%;
 }
 
 .tabla-duplicada table {
