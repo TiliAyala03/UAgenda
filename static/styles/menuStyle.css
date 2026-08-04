@@ -126,6 +126,14 @@ html, body
 
 }
 
+.ICON3
+{
+
+    height: 50%;
+    margin-right: 2%;
+
+}
+
 .UNSELECTEDOPTION
 {
 
@@ -408,7 +416,7 @@ html, body
     width: 100vw;
     height: 100vh;
 
-    background-color: rgba(10, 10, 12, 0.6);
+    background-color: #0a0a0c99;
     backdrop-filter: blur(3px);
 
     align-items: center;
@@ -579,4 +587,202 @@ html, body
 .EDITBUTTONSMALL:hover
 {
     filter: brightness(1.1);
+}
+
+#QUICKACCESS
+{
+
+    width: 100%;
+    height: 45%;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+#QUICKACCESSCONTAINER
+{
+
+    width: 95%;
+    height: 85%;
+
+    background-color: #121216;
+    border-radius: 20px;
+    box-shadow: 1px 10px 10px rgba(0, 0, 0, 0.2);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+#QUICKACCESSTITLE
+{
+
+    width: 95%;
+    height: 30%;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+
+}
+
+#QUICKACCESSINSTRUCTIONS
+{
+
+    margin-top: 0%;
+    padding: 0%;
+    font-size: smaller;
+
+}
+
+#ACCESSESCONTAINER
+
+{
+
+    width: 95%;
+    height: 60%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.QA
+{
+
+    width: 23%;
+    height: 40%;
+
+    display: flex;
+    flex-direction: row;
+    text-decoration: none;
+
+    color: #e3e3e3;
+
+    border-radius: 15px;
+    border: 1px solid;
+
+    overflow: hidden;
+    margin: 1%;
+
+}
+
+.QADIV
+{
+
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+
+    display: flex;
+    flex-direction: row;
+
+    align-items: center;
+
+}
+
+.QAICON
+{
+
+    width: 20%;
+    aspect-ratio: 1 / 1;
+
+    background-color: #fcfcfc15;
+    margin-left: 3%;
+    margin-right: 3%;
+    border-radius: 500px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.QAICON img
+{
+
+    height: 70%;
+    width: 70%;
+
+}
+
+.QA p
+{
+
+    width: 55%;
+    font-size: larger;
+
+}
+
+.QAARROW
+{
+
+    height: 50%;
+
+}
+
+#QASCHEDULE
+{
+
+    background-color: #410f6377;
+    border-color: #410f63d3;
+
+    transition: background-color 0.3s ease;
+
+}
+
+#QASCHEDULE:hover
+{
+  background-color: #4d335e77; 
+}
+
+#QACALCULATOR
+{
+
+    background-color: #16397a77;
+    border-color: #0e0e3dd3;
+
+    transition: background-color 0.3s ease;
+
+}
+
+#QACALCULATOR:hover
+{
+  background-color: #324b7a77; 
+}
+
+#QANOTEBOOK
+{
+
+    background-color: #ddb83f77;
+    border-color: #684511d3;
+
+    transition: background-color 0.3s ease;
+
+}
+
+#QANOTEBOOK:hover
+{
+  background-color: #ffe58f77; 
+}
+
+#QAFLASHCARDS
+{
+
+    background-color: #db275d77;
+    border-color: #4d1523d3;
+
+    transition: background-color 0.3s ease;
+
+}
+
+#QANOTEBOOK:hover
+{
+  background-color: #e75f8877; 
 }
