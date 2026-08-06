@@ -1,465 +1,562 @@
-*
+html, body
 {
-
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+
     font-family: 'Poppins', sans-serif;
 
+    background-color: #17181c;
+    /*background-image: radial-gradient(circle at bottom center, #1a171c 10%, #17181c 70%);*/
+
 }
 
-.header
+#MAINCONTAINER
 {
 
-    width: 100%;
+    width: 100vw;       
     height: 100vh;
-
-    max-width: 100%;
-    max-height: 100%;
-    background-image: url("../img/background.png");
-    background-position: center;
-    background-size: cover;
-    /* scroll-behavior: smooth; */
-    overflow-y: scroll;
+    position: relative;
+    z-index: 0;
+    display: flex;
+    flex-direction: row;
 
 }
 
-.menuSideBar
+#MAINCONTAINER::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: url('../img/background2.png');
+  background-size: cover;
+  background-position: center;
+  opacity: 0.05; 
+  z-index: -1; 
+}
+
+#SIDEBARCONTAINER
 {
 
-    background-color: rgba(169, 169, 169, .5);
-    width: 30%;
+    height: 100%;
+    width: 20%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+#SIDEBAR
+{
+
+    height: 90%;
+    width: 90%;
+
+    background-color: #121216;
+    /*background-image: radial-gradient(circle at bottom center, #221e25 10%, #1e1f25 70%);*/
+
+    border-radius: 30px;
+    box-shadow: 1px 10px 10px rgba(0, 0, 0, 0.2);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: top;
+    overflow: hidden;
+
+}
+
+#MAINMENUA
+{
+
+    height: 15%;
+    margin-top: 5%;
+
+}
+
+#MAINMENUIMG
+{
+
     height: 100%;
 
-    float: left;
-    text-align: center;
-
-
 }
 
-#unAgendaLabel
+.OPTION
 {
-
-    max-width: 100%;
-
-    padding-left: 2rem;
-    padding-right: 2rem;
-    padding-top: 2rem;
-
-}
-
-.selectedIndexBox
-{
-
-    max-width: 100%;
-    margin: auto;
-
-    transition: background-color 0.3s ease;
-
-    width: 300px;
-
-    padding-left: 1%;
-    padding-right: 1rem;
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-    border-radius: 10px;
-
-    text-align: center;
-
-}
-
-.selectedIndexBox:hover
-{
-
-    background-color: rgba(0, 0, 0, 0.2);
-
-}
-
-.iconMenu
-{
-
-    max-width: 100%;
-    margin: auto;
-
-}
-
-.welcomeText
-{
-    
-    color: white;
-    text-align: center;
-    margin-top: 2rem;
-    margin-bottom: 2rem;
-
-}
-.sideMenuContainer
-{
-
-    background-color: rgba(169, 169, 169, .5);
-
-    width: 10%;
-    height: 100%;
-
-    max-height: 100vh;
-
-    float: left;
-    text-align: center;
-    overflow-y: auto;
-
-}
-
-#unAgendaLabel
-{
-
-    max-width: 100%;
-    max-height: 100%;
-
-    padding-left: 0.25rem;
-    padding-right: 0.25rem;
-    padding-top: 0.25rem;
-
-}
-
-.iconBox
-{
-
-    max-height: 100%;
 
     width: 80%;
-    margin-right: 10%;
-    margin-left: 10%;
+    height: 8%;
+    margin-top: 5%;
+    text-decoration: none;
 
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
-    border-radius: 10px;
+}
+
+.SELECTEDOPTION
+{
+
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    flex-direction: row;
+
+    background-color: #ffffff05;
+    border-radius: 15px;
+
+    align-items: center;
+    justify-content: left;
+    color: #e3e3e3;
+
+}
+
+.ICON
+{
+
+    height: 70%;
+    margin-left: 10%;
+    margin-right: 10%;
+
+}
+
+.ICON2
+{
+
+    height: 70%;
+    margin-right: 10%;
+
+}
+
+.ICON3
+{
+
+    height: 50%;
+    margin-right: 2%;
+
+}
+
+.UNSELECTEDOPTION
+{
+
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    flex-direction: row;
+
+    border-radius: 15px;
+
+    align-items: center;
+    justify-content: left;
+    color: #a0a0c4;
 
     transition: background-color 0.3s ease;
 
 }
 
-.iconBox:hover
+.UNSELECTEDOPTION:hover
+{
+  background-color: #ffffff05; 
+}
+
+#SEPARATOR
 {
 
-    background-color: rgba(0, 0, 0, 0.2);
+    width: 80%;
+    height: 2px;
+    background-color: #ffffff11;
+
+    margin-top: 10%;
 
 }
 
-.iconImage
+#LOGOUTBUTTON
 {
-    
 
-    max-width: 100%;
-    max-height: 100%;
+    width: 12vw;
+    height: 5vh;
 
-
-}
-
-.notebook {
-    margin: 10px 15px;
-    float: left;
-    width: 87%;
-    height: 100%;
     display: flex;
-}
+    flex-direction: row;
 
-.buttons {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    margin-left: 10px;
-    justify-content: space-evenly;
-    height: 100px;
-    align-items: center;
-}
+    border-radius: 20px;
 
-form {
-    height: 100%;
-    width: 85%;
-}
-.btn {
-    margin-bottom: 5px;
-    background-color: rgba(0, 0, 0, 0.2);
-    border-radius: 10px;
-    padding: 5px 10px;
-}
-
-.btn-cambiar {
-    color: rgb(64, 109, 192);
-    border: rgb(64, 109, 192) solid 2px;
-}
-
-.btn-nuevo {
-    color: rgb(166, 64, 192);
-    border: rgb(166, 64, 192) solid 2px;
-}
-
-.btn-guardar {
-    color: rgb(89, 236, 108);
-    border: rgb(89, 236, 108) solid 2px;
-}
-
-.btn-eliminar {
-    color: red;
-    border: red solid 2px;
-}
-
-.btn-cambiar:hover {
-    background-color: rgb(64, 109, 192);
-    color: white;
-}
-
-.btn-nuevo:hover {
-    background-color: rgb(166, 64, 192);
-    color: white;
-}
-
-.btn-guardar:hover {
-    background-color: rgb(89, 236, 108);
-    color: white;
-}
-
-.btn-eliminar:hover {
-    background-color: red;
-    color: white;
-}
-
-.justify {
-    display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 15%;
-}
-
-
-/* Estilos para el fondo detrás del título "Modo Oscuro" */
-.mode-label {
-    background-color: #333; /* Cambia el color de fondo a tu elección */
-    color: #fff; /* Cambia el color del texto a tu elección */
-    padding: 5px 10px; /* Ajusta el espacio alrededor del texto */
-    border-radius: 5px; /* Hace que el fondo sea ligeramente redondeado */
-  }
-  
-/* Estilos para el interruptor en modo claro */
-.switch-container {
-    display: flex;
-    align-items: center;
-  }
-  
-  .switch {
-    position: relative;
-    display: inline-block;
-    width: 60px;
-    height: 34px;
-  }
-  
-  .switch input {
-    display: none;
-  }
-  
-  .slider {
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #ccc;
-    -webkit-transition: 0.4s;
-    transition: 0.4s;
-    border-radius: 34px;
-  }
-  
-  .slider:before {
-    position: absolute;
-    content: "";
-    height: 26px;
-    width: 26px;
-    left: 4px;
-    bottom: 4px;
-    background-color: #fff;
-    -webkit-transition: 0.4s;
-    transition: 0.4s;
-    border-radius: 50%;
-  }
-  
-  /* Estilos para el interruptor en modo oscuro */
-  .dark-mode .slider {
-    background-color: #333;
-  }
-  
-  .dark-mode .slider:before {
-    background-color: #ccc;
-  }
-  
-  /* Etiqueta del modo */
-  .mode-label {
-    margin-left: 10px;
-  }
-  
-/* Estilo para el botón de modo oscuro */
-.dark-mode-button {
-    border: none;
-    border-radius: 20px;
-    padding: 10px 20px;
-    background-color: #333; /* Color de fondo oscuro */
-    color: #fff; /* Texto en color blanco */
-    cursor: pointer;
-    font-weight: bold;
+    color: #e3e3e3;
+    background-color: #ffffff05;
     transition: background-color 0.3s ease;
+
+    margin-top: 15%;
+
+    cursor: pointer;
+    border-width: 0.5px;
+    border-color: #e3e3e31f;
+
+    
+
 }
 
-.dark-mode-button:hover {
-    background-color: #555; /* Cambio de color de fondo al pasar el cursor */
+#LOGOUTBUTTON:hover
+{
+  background-color: #ffffff10; 
 }
 
+/* La sidebar vive en sidebarStyle.css — este archivo es solo lo
+   específico de la página de Horario. */
+
+* {
+    box-sizing: border-box;
+}
+
+/* ===================== CONTENEDOR DERECHO ===================== */
+ 
+.contentContainer {
+ 
+    height: 100%;
+    width: 80%;
+ 
+    display: flex;
+    flex-direction: column;
+ 
+    color: #e3e3e3;
+ 
+    padding: 2% 3%;
+    box-sizing: border-box;
+}
+ 
+.welcomeText {
+    flex-shrink: 0;
+    margin-bottom: 1.5%;
+}
+ 
+.welcomeText h1 {
+    margin: 0;
+    font-size: 1.6rem;
+}
+ 
 #id-cuaderno {
     display: none;
 }
-
+ 
+/* ===================== ÁREA DEL EDITOR + BOTONERA ===================== */
+ 
+.notebook {
+    flex: 1;
+    min-height: 0; /* clave para que el editor pueda tener un alto real y no
+                       se desborde: sin esto, flex nunca deja que el hijo
+                       se encoja por debajo del tamaño de su contenido */
+ 
+    display: flex;
+    flex-direction: row;
+    gap: 1.5%;
+}
+ 
+#notebookForm {
+    flex: 1;
+    min-width: 0;
+    height: 100%;
+ 
+    background-color: #121216;
+    border-radius: 15px;
+    box-shadow: 1px 10px 10px rgba(0, 0, 0, 0.2);
+    overflow: hidden; /* recorta cualquier desborde del iframe de TinyMCE
+                          a las esquinas redondeadas del contenedor */
+}
+ 
+/* TinyMCE inyecta su propio iframe adentro de #mytextarea_ifr; esto lo
+   fuerza a respetar el border-radius del contenedor y a no generar
+   scroll doble (uno del iframe + uno del contenedor). */
+.tox-tinymce {
+    border: none !important;
+    border-radius: 15px !important;
+    height: 100% !important;
+}
+ 
+.justify {
+    flex-shrink: 0;
+    width: 220px;
+ 
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    gap: 0.6rem;
+ 
+    position: relative;
+}
+ 
+.buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    width: 100%;
+}
+ 
+.btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+ 
+    background-color: #ffffff05;
+    border-radius: 12px;
+    padding: 0.7rem 0.5rem;
+ 
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 500;
+    cursor: pointer;
+ 
+    border: 1px solid transparent;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+ 
+.btnIcon {
+    height: 1.1rem;
+    width: 1.1rem;
+    object-fit: contain;
+}
+ 
+.btn-nuevo {
+    color: #7868d8;
+    border-color: #7868d877;
+}
+ 
+.btn-nuevo:hover {
+    background-color: #7868d822;
+}
+ 
+.btn-cambiar {
+    color: #6db1e0;
+    border-color: #6db1e077;
+}
+ 
+.btn-cambiar:hover {
+    background-color: #6db1e022;
+}
+ 
+.btn-guardar {
+    color: #7ee081;
+    border-color: #7ee08177;
+}
+ 
+.btn-guardar:hover {
+    background-color: #7ee08122;
+}
+ 
+.btn-eliminar {
+    color: #cc8984;
+    border-color: #cc898477;
+}
+ 
+.btn-eliminar:hover {
+    background-color: #cc898422;
+}
+ 
+.info {
+    font-size: 0.7rem;
+    color: #e3e3e3;
+    border: 1px solid #ffffff22;
+    padding: 0.4rem 0.6rem;
+    border-radius: 8px;
+    text-align: center;
+    display: none;
+}
+ 
+.info-success {
+    color: #7ee081;
+    border-color: #7ee08177;
+    background-color: #7ee08118;
+    display: block;
+}
+ 
+.info-failure {
+    color: #cc8984;
+    border-color: #cc898477;
+    background-color: #cc898418;
+    display: block;
+}
+ 
+/* ===================== MENÚ DESPLEGABLE DE CUADERNOS ===================== */
+ 
+.menu-desplegable {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: calc(100% + 0.6rem);
+ 
+    background-color: #121216;
+    border-radius: 12px;
+    box-shadow: 1px 10px 10px rgba(0, 0, 0, 0.2);
+ 
+    min-width: 200px;
+    max-height: 300px;
+    overflow-y: auto;
+ 
+    z-index: 100;
+ 
+    scrollbar-width: thin;
+    scrollbar-color: #555 transparent;
+}
+ 
+.menu-desplegable ul {
+    list-style: none;
+    padding: 0.4rem;
+    margin: 0;
+}
+ 
+.menu-desplegable li {
+    padding: 0.6rem 0.8rem;
+    border-radius: 8px;
+    color: #e3e3e3;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+ 
+.menu-desplegable li:hover {
+    background-color: #ffffff0a;
+}
+ 
+/* ===================== MODAL: NUEVO CUADERNO ===================== */
+ 
 .newNotebookWindow {
     display: none;
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+ 
+    background-color: #0a0a0c99;
+    backdrop-filter: blur(3px);
+ 
     align-items: center;
+    justify-content: center;
+ 
+    z-index: 200;
 }
-
-#newNotebookContent{
-    width: 30%;
-    background: white;
-    padding: 20px;
-    border-radius: 5px;
+ 
+#newNotebookContent {
+    width: min(90vw, 380px);
+ 
+    background-color: #121216;
+    color: #e3e3e3;
+ 
+    padding: 6% 8%;
+    border-radius: 20px;
+    box-shadow: 1px 10px 10px rgba(0, 0, 0, 0.2);
+ 
     text-align: center;
 }
-
+ 
+#newNotebookContent h2 {
+    margin-top: 0;
+}
+ 
+#formBody2 label {
+    display: block;
+    font-size: smaller;
+    color: #a0a0c4;
+    margin-bottom: 2%;
+    text-align: left;
+}
+ 
 .inputText {
-
-    background: rgb(219, 219, 219);
-    width: 80%;
-    height: 2.5rem;
-
+    background-color: #0f1013;
+    color: azure;
+    width: 100%;
+    height: 5vh;
+ 
     border-radius: 10px;
     border: none;
-
+    padding: 0 4%;
+ 
     text-align: center;
-
+    font-family: 'Poppins', sans-serif;
+    box-sizing: border-box;
 }
-
-#formBody {
-    background: rgb(255, 255, 255);
-    width: 100%;
-    padding: 20px;
-    border-radius: 5px;
-    text-align: center;
+ 
+#newNotebookWindowButtons {
+    display: flex;
+    gap: 4%;
+    margin-top: 6%;
 }
-
-#formBody2 {
-    background: rgb(255, 255, 255);
-    width: 100%;
-    padding: 20px;
-    border-radius: 5px;
-    text-align: center;
-}
-
-#formButtonAccept {
-
-    margin: 1rem;
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
-
-    border-radius: 10px;
-    background-color: rgb(114, 218, 157);
-
-    float: left;
-
-
-
-}
-
+ 
+#formButtonAccept,
 #formButtonDecline {
-
-    margin: 1rem;
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
-
-    border-radius: 10px;
-    background-color: rgb(204, 137, 132);
-
-    float: right;
-
+    flex: 1;
+    height: 5vh;
+ 
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    font-weight: bold;
+    font-family: 'Poppins', sans-serif;
+    transition: background-color 0.2s ease;
 }
-
-.info {
-    font-size: 0.7em;
-    color: white;
-    border: white solid 2px;
-    padding: 4px 8px;
-    margin-bottom: 3rem;
-    border-radius: 6px;
-    display: none;
+ 
+#formButtonAccept {
+    background-color: #7868d8;
+    color: aliceblue;
 }
-
-.info-success {
-    color: #66e966;
-    border-color: #66e966;
-    background-color: rgba(106, 250, 106, 0.3);
-    display: block;
+ 
+#formButtonAccept:hover {
+    background-color: #6a5cc4;
 }
-
-.info-failure {
-    color: red;
-    border-color: red;
-    background-color: rgba(226, 79, 79, 0.3);
-    display: block;
+ 
+#formButtonDecline {
+    background-color: #ffffff08;
+    color: #e3e3e3;
 }
-
-/* Tooltip */
+ 
+#formButtonDecline:hover {
+    background-color: #ffffff14;
+}
+ 
+/* ===================== TOOLTIPS DE INFO ===================== */
+ 
 .info-icon {
-    display: inline-block;
-    width: 20px;
-    height: 20px;
-    background-color: #ccc;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+ 
+    background-color: #ffffff10;
+    color: #a0a0c4;
     border-radius: 50%;
-    text-align: center;
-    line-height: 20px;
+ 
+    font-size: 0.7rem;
     cursor: pointer;
     position: relative;
 }
-
-.info-icon:hover {
-    background-color: #ddd;
-    /* Cambia el color de fondo al pasar el ratón sobre el icono */
-}
-
+ 
 .tooltip {
     visibility: hidden;
-    width: 120px;
-    background-color: #333;
-    color: #fff;
-    text-align: center;
-    border-radius: 6px;
-    padding: 5px;
+    width: 220px;
+ 
+    background-color: #121216;
+    color: #e3e3e3;
+    box-shadow: 1px 10px 10px rgba(0, 0, 0, 0.2);
+ 
+    text-align: left;
+    border-radius: 10px;
+    padding: 0.6rem 0.8rem;
+ 
     position: absolute;
-    z-index: 1;
-    bottom: 125%;
+    z-index: 10;
+    bottom: 130%;
     left: 50%;
     margin-left: -60px;
+ 
+    font-size: 0.75rem;
     opacity: 0;
-    transition: opacity 0.3s;
+    transition: opacity 0.2s ease;
 }
-
+ 
 .info-icon:hover .tooltip {
     visibility: visible;
     opacity: 1;
 }
+ 
