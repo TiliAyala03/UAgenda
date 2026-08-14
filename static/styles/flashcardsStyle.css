@@ -1,495 +1,357 @@
-* {
-
+html, body
+{
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+
     font-family: 'Poppins', sans-serif;
 
+    background-color: #17181c;
 }
 
-/* CONFIGURACIÓN DEL CONTENEDOR DE TODO */
+#MAINCONTAINER
+{
 
-.mainContainer {
-
-    background-image: url(/static/img/background.png);
-    background-size: cover;
+    width: 100vw;       
     height: 100vh;
-    overflow-y: hidden;
+    position: relative;
+    z-index: 0;
+    display: flex;
+    flex-direction: row;
 
 }
 
-/* CONFIGURACIÓN DEL MENÚ LATERAL Y DE SUS COMPONENTES */
+#MAINCONTAINER::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: url('../img/background2.png');
+  background-size: cover;
+  background-position: center;
+  opacity: 0.05; 
+  z-index: -1; 
+}
 
-.sideMenuContainer {
+#SIDEBARCONTAINER
+{
 
-    background-color: rgba(169, 169, 169, .5);
+    height: 100%;
+    width: 20%;
 
-    width: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+#SIDEBAR
+{
+
+    height: 90%;
+    width: 90%;
+
+    background-color: #121216;
+
+    border-radius: 30px;
+    box-shadow: 1px 10px 10px rgba(0, 0, 0, 0.2);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: top;
+    overflow: hidden;
+
+}
+
+#MAINMENUA
+{
+
+    height: 15%;
+    margin-top: 5%;
+
+}
+
+#MAINMENUIMG
+{
+
     height: 100%;
 
-    max-height: 100vh;
-
-    float: left;
-    text-align: center;
-    overflow-y: auto; 
-
-    display: grid;
-    grid-template-rows: auto;
-    overflow-y: hidden;
 }
 
-#unAgendaLabel {
-    max-width: 100%;
-    max-height: 100%;
-
-    padding-left: 0.25rem;
-    padding-right: 0.25rem;
-    padding-top: 0.25rem;
-    object-fit: cover;
-}
-
-.iconBox {
-
-    max-height: 100%;
+.OPTION
+{
 
     width: 80%;
-    margin-right: 10%;
-    margin-left: 10%;
+    height: 8%;
+    margin-top: 5%;
+    text-decoration: none;
 
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
-    border-radius: 10px;
+}
+
+.SELECTEDOPTION
+{
+
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    flex-direction: row;
+
+    background-color: #ffffff05;
+    border-radius: 15px;
+
+    align-items: center;
+    justify-content: left;
+    color: #e3e3e3;
+
+}
+
+.ICON
+{
+
+    height: 70%;
+    margin-left: 10%;
+    margin-right: 10%;
+
+}
+
+.ICON2
+{
+
+    height: 70%;
+    margin-right: 10%;
+
+}
+
+.ICON3
+{
+
+    height: 50%;
+    margin-right: 2%;
+
+}
+
+.UNSELECTEDOPTION
+{
+
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    flex-direction: row;
+
+    border-radius: 15px;
+
+    align-items: center;
+    justify-content: left;
+    color: #a0a0c4;
 
     transition: background-color 0.3s ease;
 
 }
 
-.iconBox:hover {
+.UNSELECTEDOPTION:hover
+{
+  background-color: #ffffff05; 
+}
 
-    background-color: rgba(0, 0, 0, 0.2);
+#SEPARATOR
+{
+
+    width: 80%;
+    height: 2px;
+    background-color: #ffffff11;
+
+    margin-top: 10%;
 
 }
 
-.iconImage {
+#LOGOUTBUTTON
+{
 
-    width: 100%;
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: cover;
+    width: 12vw;
+    height: 5vh;
+
+    display: flex;
+    flex-direction: row;
+
+    border-radius: 20px;
+
+    align-items: center;
+    justify-content: center;
+    color: #e3e3e3;
+    background-color: #ffffff05;
+    transition: background-color 0.3s ease;
+
+    margin-top: 15%;
+
+    cursor: pointer;
+    border-width: 0.5px;
+    border-color: #e3e3e31f;
 
 }
 
-/* CONFIGURACIÓN DEL CONTENEDOR PRINCIPAL */
+#LOGOUTBUTTON:hover
+{
+  background-color: #ffffff10; 
+}
+
+* {
+    box-sizing: border-box;
+}
+
+/* ===================== CONTENEDOR DERECHO ===================== */
 
 .contentContainer {
 
-    width: 90%;
     height: 100%;
+    width: 80%;
 
-    max-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 
-    float: right;
-    text-align: center;
-    position: relative;
-}
+    color: #e3e3e3;
 
-.cardContainer, .studyDeckContainer
-{
-    
-    width: 60%;
-    height: 80%;
-
-    margin: 0 auto;
-    margin-top: 2rem;
-    text-align: center;
-
-    background-color: rgb(29, 29, 29);
-    border-radius: 10px;
-    color: white;
-
-    padding: 2rem;
-
+    padding: 2% 3%;
     overflow-y: auto;
 
+    scrollbar-width: thin;
+    scrollbar-color: #555 transparent;
+}
+
+/* ===================== TARJETA "MAZO ACTUAL" ===================== */
+
+.cardContainer,
+.studyDeckContainer {
+
+    width: min(560px, 90%);
+    max-height: 90%;
+
+    text-align: center;
+
+    background-color: #121216;
+    border-radius: 20px;
+    box-shadow: 1px 10px 10px rgba(0, 0, 0, 0.2);
+
+    padding: 2rem 2.5rem;
+    overflow-y: auto;
+
+    scrollbar-width: thin;
+    scrollbar-color: #555 transparent;
 }
 
 #cardContainer .info-icon {
     margin-left: auto;
 }
 
-.studyDeckContainer {
-    margin-top: 5rem;
+.cardContainer p {
+    margin: 0.2rem 0;
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
+    color: #a0a0c4;
 }
 
-#dateText
-{
-
-    color: brown;
-
+.cardContainer h1 {
+    margin: 0 0 1.2rem 0;
+    font-size: 1.6rem;
 }
 
-.dateSentence
-{
+.cardContainer h2 {
+    margin: 0 0 1.2rem 0;
+    font-size: 1.1rem;
+    color: #cbb764;
+}
 
+.dateSentence {
     display: inline-block;
-    margin-right: 0.5rem;
-
+    margin-right: 0.3rem;
 }
 
-#addCardButton {
-
-    margin: 1rem;
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
-
-    border-radius: 10px;
-    background-color: rgb(163, 218, 163);
-
-    transition: all 0.4s ease;
-    width: 25%;
-}
-
-#showAnswerButton, #changeCardContentButton, #correctAnswerButton, #wrongAnswerButton {
-
-    /* margin: 1rem auto; */
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
-
-    border-radius: 10px;
-    background-color: rgb(163, 218, 163);
-
-    transition: all 0.4s ease;
-    width: 20%;
-}
-
-#wrongAnswerButton {
-    background-color: rgb(204, 137, 132);
-}
-
-/* Estilo para los botones */
-.stdyButtons {
-    display: flex;
-    justify-content: space-between;
-    max-width: 300px;
-    /* Ajusta según sea necesario */
-}
-
-#addCardButton:hover, #showAnswerButton:hover, #changeCardContentButton:hover, #correctAnswerButton:hover{
-
-    cursor: pointer;
-    background-color: rgb(64, 124, 69);
-    color: white;
-}
-
-#wrongAnswerButton:hover     {
-    cursor: pointer;
-    background-color: rgb(218, 114, 114);
-    color: white;
-}
-
-#editDeckButton, #changeCardContentButton {
-
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
-
-    border-radius: 10px;
-    background-color: rgb(231, 197, 145);
-
-    transition: all 0.4s ease;
-
-    width: 25%;
-
-}
-
-#editDeckButton:hover, #changeCardContentButton:hover {
-
-    cursor: pointer;
-    background-color: rgb(196, 117, 65);
-    color: white;
-
-}
-
-#studyDeckButton {
-
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
-
-    border-radius: 10px;
-    background-color: rgb(145, 168, 231);
-
-    transition: all 0.4s ease;
-
-    width: 45%;
-
-}
-
-#studyDeckButton:hover {
-
-    cursor: pointer;
-    background-color: rgb(81, 100, 153);
-    color: white;
-
-}
-
-@media (max-width: 768px) {
-
-    .cardContainer,
-    .studyDeckContainer {
-        width: 80%;
-    }
-
-    #addCardButton,
-    #showAnswerButton,
-    #changeCardContentButton,
-    #editDeckButton,
-    #studyDeckButton {
-        width: 100%;
-    }
+#dateText {
+    color: #cc8984;
+    font-weight: 600;
 }
 
 .selector {
-
-    margin-top: 2rem;
-    width: 60%;
-    height: 2.5rem;
-    border-radius: 10px;
-
-    background-color: rgb(226, 226, 226);
-
-}
-
-.newDeckWindow, .addCardWindow {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
+    margin-top: 1.5rem;
     width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    justify-content: center;
-    align-items: center;
-}
+    height: 2.6rem;
+    padding: 0 0.8rem;
 
-#newDeckForm, #addCardForm {
-    background: white;
-    padding: 20px;
-    border-radius: 5px;
-    text-align: center;
-}
-
-.inputText {
-
-    background: rgb(219, 219, 219);
-    width: 80%;
-    height: 2.5rem;
-
-    border-radius: 10px;
+    background-color: #0f1013;
+    color: #e3e3e3;
     border: none;
+    border-radius: 10px;
 
-    text-align: center;
-
+    font-family: 'Poppins', sans-serif;
 }
 
-.inputText2 {
+/* ===================== BOTONES DEL MAZO ===================== */
 
-    background: rgb(255, 255, 255);
-    color: white;
-    height: 0%;
+.cardActions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    margin-top: 1.5rem;
+}
 
-    border-radius: 10px;
+#addCardButton,
+#editDeckButton,
+#studyDeckButton {
+
+    width: 100%;
+    padding: 0.7rem;
+
     border: none;
+    border-radius: 12px;
 
-    text-align: center;
-
-}
-
-#formButtonAccept {
-
-    margin: 1rem;
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
-
-    border-radius: 10px;
-    background-color: rgb(114, 218, 157);
-}
-
-#formButtonAccept:hover
-{
-
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 0.85rem;
     cursor: pointer;
 
+    transition: filter 0.2s ease;
 }
 
-#editButtonAccept {
-
-    margin: 1rem;
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
-
-    border-radius: 10px;
-    background-color: rgb(114, 218, 157);
+#addCardButton {
+    background-color: #7ee081;
+    color: #17181c;
 }
 
-#editButtonAccept:hover
-{
-
-    cursor: pointer;
-
+#editDeckButton {
+    background-color: #cbb764;
+    color: #17181c;
 }
 
-#formButtonDecline {
-
-    margin: 1rem;
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
-
-    border-radius: 10px;
-    background-color: rgb(204, 137, 132);
-
-    float: right;
-
+#studyDeckButton {
+    background-color: #7868d8;
+    color: aliceblue;
 }
 
-#formButtonDecline:hover
-{
-
-    cursor: pointer;
-
+#addCardButton:hover,
+#editDeckButton:hover,
+#studyDeckButton:hover {
+    filter: brightness(1.1);
 }
 
-.firstDeckWindow {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    justify-content: center;
-    align-items: center;
+/* ===================== ZONA DE ESTUDIO ===================== */
+
+#studyZone {
+    margin: 0 0 1.5rem 0;
+    font-size: 1rem;
+    letter-spacing: 0.05em;
+    color: #a0a0c4;
+    font-weight: 500;
 }
 
-#firstDeckForm {
-    background: white;
-    width: 60%;
-    padding: 20px;
-    border-radius: 5px;
-    text-align: center;
-}
-
-.editDeckWindow {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    justify-content: center;
-    align-items: center;
-}
-
-#editDeckForm {
-    background: white;
-    width: 60%;
-    height: 70%;
-    padding: 20px;
-    border-radius: 5px;
-    text-align: center;
-}
-
-
-
-.subDiv
-{
-
-    margin: 1rem;
-    text-align: left;
-
-}
-
-.editDeckForm2 {
-    height: 70%;
-    overflow-y: auto;
-    border-radius: 5px;
-    text-align: center;
-}
-
-.subtitle
-{
-
-    float: left;
-    margin: 1rem;
-    width: 60%;
-
-}
-
-.editButton
-{
-
-    margin: 1rem;
-    padding-top: 0.2rem;
-    padding-bottom: 0.2rem;
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
-
-    border-radius: 10px;
-    background-color: rgb(218, 161, 114);
-
-
-}
-
-.editButton:hover
-{
-
-    cursor: pointer;
-
-}
-
-.deleteButton
-{
-
-    margin: 1rem;
-    padding-top: 0.2rem;
-    padding-bottom: 0.2rem;
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
-
-    border-radius: 10px;
-    background-color: rgb(218, 114, 114);
-
-}
-
-.deleteButton
-{
-
-    cursor: pointer;
-
-}
-
-/* Card Style */
 .card-container {
     perspective: 1000px;
-    height: 50vh;
-    width: 40vh;
+    height: 45vh;
+    width: 100%;
+    max-width: 320px;
     margin: 0 auto;
-    color: black;
 }
 
 .card {
@@ -506,43 +368,140 @@
     width: 100%;
     height: 100%;
     backface-visibility: hidden;
+
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    justify-content: center;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    border-radius: 8px;
+    text-align: center;
+    padding: 1.5rem;
+
+    box-shadow: 1px 10px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 16px;
+}
+
+.card .card-face h2 {
+    margin: 0 0 1rem 0;
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    opacity: 0.7;
+}
+
+.card .card-face p {
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 500;
 }
 
 .card .card-face.front {
-    background-color: #61baf5;
+    background-color: #2a2540;
+    color: #cdc4f7;
     transform: rotateY(0deg);
 }
 
 .card .card-face.back {
-    background-color: #f0786a;
+    background-color: #402a2a;
+    color: #f2c4c4;
     transform: rotateY(180deg);
 }
 
-/* Pop-up style */
+.studyButtons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.6rem;
+    margin-top: 1.5rem;
+}
+
+#showAnswerButton,
+#changeCardContentButton,
+#correctAnswerButton,
+#wrongAnswerButton,
+#backToDeckButton {
+
+    padding: 0.6rem 1.2rem;
+
+    border: none;
+    border-radius: 12px;
+
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 0.8rem;
+    cursor: pointer;
+
+    transition: filter 0.2s ease;
+}
+
+#showAnswerButton,
+#changeCardContentButton {
+    background-color: #7868d8;
+    color: aliceblue;
+}
+
+#correctAnswerButton {
+    background-color: #7ee081;
+    color: #17181c;
+}
+
+#wrongAnswerButton {
+    background-color: #cc8984;
+    color: #17181c;
+}
+
+#showAnswerButton:hover,
+#changeCardContentButton:hover,
+#correctAnswerButton:hover,
+#wrongAnswerButton:hover {
+    filter: brightness(1.1);
+}
+
+#backToDeckButton {
+    display: block;
+    margin: 1.5rem auto 0 auto;
+    background-color: #ffffff08;
+    color: #e3e3e3;
+}
+
+#backToDeckButton:hover {
+    background-color: #ffffff14;
+}
+
+@media (max-width: 768px) {
+    .cardContainer,
+    .studyDeckContainer {
+        width: 95%;
+        padding: 1.5rem;
+    }
+}
+
+/* ===================== POP-UP DE FIN DE ESTUDIO ===================== */
+
 .popup {
     display: none;
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    padding: 20px;
-    border: 1px solid #ccc;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    z-index: 1;
+
+    background-color: #121216;
+    color: #e3e3e3;
+
+    padding: 1.5rem 2rem;
+    border-radius: 15px;
+    box-shadow: 1px 10px 10px rgba(0, 0, 0, 0.2);
+
     text-align: center;
-    border-radius: 6px;
-    background-color: #e6e6fa;
-    color: #000;
+    z-index: 210;
 }
 
-/* Fondo oscurecido cuando aparece el pop-up */
+#countdown {
+    display: inline-block;
+    margin-top: 0.5rem;
+    color: #7868d8;
+    font-weight: 700;
+}
+
 .overlay {
     display: none;
     position: fixed;
@@ -550,69 +509,254 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 1;
+    background-color: #0a0a0c99;
+    backdrop-filter: blur(3px);
+    z-index: 200;
 }
 
+/* ===================== MODALES ===================== */
 
-/* Tooltip */
-.info-icon {
-    display: inline-block;
-    width: 20px;
-    height: 20px;
-    background-color: #ccc;
-    border-radius: 50%;
+.newDeckWindow,
+.addCardWindow,
+.firstDeckWindow,
+.editDeckWindow {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+
+    background-color: #0a0a0c99;
+    backdrop-filter: blur(3px);
+
+    align-items: center;
+    justify-content: center;
+
+    z-index: 200;
+}
+
+#newDeckForm,
+#addCardForm,
+#firstDeckForm {
+    width: min(90vw, 400px);
+    max-height: 85vh;
+    overflow-y: auto;
+
+    background-color: #121216;
+    color: #e3e3e3;
+
+    padding: 2rem 2.2rem;
+    border-radius: 20px;
+    box-shadow: 1px 10px 10px rgba(0, 0, 0, 0.2);
+
     text-align: center;
-    line-height: 20px;
+
+    scrollbar-width: thin;
+    scrollbar-color: #555 transparent;
+}
+
+#newDeckForm h2,
+#addCardForm h2,
+#firstDeckForm h2 {
+    margin-top: 0;
+}
+
+#newDeckForm p,
+#firstDeckForm p {
+    font-size: 0.85rem;
+    color: #a0a0c4;
+    text-align: left;
+}
+
+#newDeckForm label,
+#addCardForm label,
+#firstDeckForm label {
+    display: block;
+    text-align: left;
+    font-size: smaller;
+    color: #a0a0c4;
+    margin: 0.8rem 0 0.3rem 0;
+}
+
+.inputText {
+    background-color: #0f1013;
+    color: azure;
+    width: 100%;
+    height: 2.6rem;
+
+    border-radius: 10px;
+    border: none;
+    padding: 0 0.8rem;
+
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+}
+
+.inputText2 {
+    display: none; /* son campos hidden — nunca deberían ocupar espacio visual */
+}
+
+#addRemindWindowButtons {
+    display: flex;
+    gap: 0.6rem;
+    margin-top: 1.5rem;
+}
+
+#formButtonAccept,
+#formButtonDecline {
+    flex: 1;
+    height: 2.6rem;
+
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: bold;
+    font-family: 'Poppins', sans-serif;
+    transition: background-color 0.2s ease;
+}
+
+#formButtonAccept {
+    background-color: #7868d8;
+    color: aliceblue;
+}
+
+#formButtonAccept:hover {
+    background-color: #6a5cc4;
+}
+
+#formButtonDecline {
+    background-color: #ffffff08;
+    color: #e3e3e3;
+}
+
+#formButtonDecline:hover {
+    background-color: #ffffff14;
+}
+
+/* ===================== EDITAR MAZO ===================== */
+
+#editDeckForm {
+    width: min(90vw, 480px);
+    max-height: 80vh;
+    overflow-y: auto;
+
+    background-color: #121216;
+    color: #e3e3e3;
+
+    padding: 1.5rem 2rem;
+    border-radius: 20px;
+    box-shadow: 1px 10px 10px rgba(0, 0, 0, 0.2);
+
+    text-align: center;
+
+    scrollbar-width: thin;
+    scrollbar-color: #555 transparent;
+}
+
+.subDiv {
+    margin: 0.8rem 0;
+    text-align: left;
+}
+
+.editDeckForm2 {
+    max-height: 50vh;
+    overflow-y: auto;
+    border-radius: 10px;
+    text-align: left;
+
+    scrollbar-width: thin;
+    scrollbar-color: #555 transparent;
+}
+
+.subtitle {
+    margin: 0.5rem 0;
+    font-size: 0.9rem;
+    color: #a0a0c4;
+}
+
+.editButton,
+.deleteButton {
+    padding: 0.3rem 1rem;
+    margin: 0.3rem 0.3rem 0.3rem 0;
+
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 600;
+
+    transition: filter 0.2s ease;
+}
+
+.editButton {
+    background-color: #cbb764;
+    color: #17181c;
+}
+
+.deleteButton {
+    background-color: #cc8984;
+    color: #17181c;
+}
+
+.editButton:hover,
+.deleteButton:hover {
+    filter: brightness(1.1);
+}
+
+/* ===================== TOOLTIPS DE INFO ===================== */
+
+.info-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+
+    background-color: #ffffff10;
+    color: #a0a0c4;
+    border-radius: 50%;
+
+    font-size: 0.7rem;
     cursor: pointer;
     position: relative;
 }
 
-.info-icon:hover {
-    background-color: #ddd;
-    /* Cambia el color de fondo al pasar el ratón sobre el icono */
+.tooltip,
+.tooltip2 {
+    visibility: hidden;
+    width: 260px;
+
+    background-color: #121216;
+    color: #e3e3e3;
+    box-shadow: 1px 10px 10px rgba(0, 0, 0, 0.2);
+
+    text-align: left;
+    border-radius: 10px;
+    padding: 0.6rem 0.8rem;
+
+    position: absolute;
+    z-index: 10;
+    font-size: 0.75rem;
+    opacity: 0;
+    transition: opacity 0.2s ease;
 }
 
 .tooltip {
-    visibility: hidden;
-    width: 200px;
-    background-color: #e6e6fa;
-    color: #000;
-    text-align: center;
-    border-radius: 6px;
-    padding: 5px;
-    position: absolute;
-    z-index: 1;
-    top: 100%;
+    top: 130%;
     left: 50%;
-    opacity: 0;
-    transition: opacity 0.3s;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transform: translateX(-50%);
 }
 
 .tooltip2 {
-    visibility: hidden;
-    background-color: #e6e6fa;
-    color: #000;
-    text-align: center;
-    border-radius: 6px;
-    padding: 5px;
-    position: relative;
-    z-index: 1;
     bottom: 125%;
     left: 50%;
     margin-left: -60px;
-    opacity: 0;
-    transition: opacity 0.3s;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.info-icon:hover .tooltip {
+.info-icon:hover .tooltip,
+.iconBox:hover .tooltip2 {
     visibility: visible;
     opacity: 1;
-}
-.iconBox:hover .tooltip2{
-    visibility: visible;
-    opacity: 1;
-
 }
